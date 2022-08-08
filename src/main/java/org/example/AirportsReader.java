@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class AirportsReader {
     public List<Airport> airports = new ArrayList<>();
@@ -16,7 +17,7 @@ public class AirportsReader {
                 String[] values = line.split(",");
                 Airport airport = new Airport();
                 airport.setId(Integer.parseInt(values[0]));
-                airport.setAirportName(values[1].replace('"', ' ').trim());
+                airport.setAirportName(values[1].replace('"', ' ').trim()); // для поиска по значению без ковычек и пробелов
                 airport.setCityName(values[2]);
                 airport.setCountry(values[3]);
                 airports.add(airport);
@@ -25,21 +26,21 @@ public class AirportsReader {
             throw new RuntimeException(e);
         }
     }
-    public List<Airport> getListAirports(){
-        readAirport();
-        return airports;
-    }
-    public List<Airport>  findAirportsByName(String name){
+    // Придерживался принципа single-responsibility
+    public void  findAirportsByName(String name){
         readAirport();
         long time = System.currentTimeMillis();
-        List<Airport> newList = new ArrayList<>();
+        //List<Airport> newList = new ArrayList<>();
+        int counter = 0;
         for (Airport airport : airports){
             if (airport.getAirportName().toUpperCase().startsWith(name.toUpperCase())){
-                newList.add(airport);
+                //newList.add(airport);
+                counter++; // Выйгрыш на 3-4 милисекунды!
+                System.out.println(airport.getAirportName() +"[" +airport + "]");
             }
         }
-        System.out.println("founded values: " + newList.size());
+        System.out.println("founded values: " + counter);
         System.out.println("searching time: " + (System.currentTimeMillis() - time));
-        return newList;
+        //return newList;
     }
 }

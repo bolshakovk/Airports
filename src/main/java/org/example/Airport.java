@@ -1,5 +1,8 @@
 package org.example;
-
+/*
+    Поиск ведется по колонке 2, airportName, следовательно позволил себе не определять такие поля как широта, долгота и
+    т.п. В ТЗ так же указано что не важно за что отвечают колонки, но для репрезентативности перегрузил пару полей.
+ */
 
 public class Airport {
     private int id;
@@ -12,12 +15,8 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "Airports{" +
-                "id=" + id +
-                ", airportName='" + airportName + '\'' +
-                ", cityName='" + cityName + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return id+ " "  + airportName+ " " + cityName+ " " + country;
+
     }
 
     public int getId() {

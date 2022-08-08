@@ -2,6 +2,7 @@ package org.example;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +11,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String search = scanner.nextLine();
         scanner.close();
-        System.out.println(reader.findAirportsByName(search));
+        reader.findAirportsByName(search);
     }
 }
