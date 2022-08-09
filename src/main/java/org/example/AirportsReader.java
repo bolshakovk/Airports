@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public class AirportsReader {
-    public List<Airport> airports = new ArrayList<>();
+    private int counter;
+    private long timeHasPassed;
+    private List<Airport> airports = new ArrayList<>();
     public void readAirport(){
         try (BufferedReader br = new BufferedReader(new FileReader(Config.AIRPORTS))) {
             String line;
@@ -28,19 +30,46 @@ public class AirportsReader {
     }
     // Придерживался принципа single-responsibility
     public void  findAirportsByName(String name){
-        readAirport();
         long time = System.currentTimeMillis();
         //List<Airport> newList = new ArrayList<>();
-        int counter = 0;
+        counter = 0;
         for (Airport airport : airports){
+            if (name.equals("")){
+                System.out.println("No text value");
+                break;
+            }
             if (airport.getAirportName().toUpperCase().startsWith(name.toUpperCase())){
                 //newList.add(airport);
                 counter++; // Выйгрыш на 3-4 милисекунды!
                 System.out.println(airport.getAirportName() +"[" +airport + "]");
             }
         }
+        timeHasPassed = System.currentTimeMillis() - time;
         System.out.println("founded values: " + counter);
-        System.out.println("searching time: " + (System.currentTimeMillis() - time));
+        System.out.println("searching time: " + timeHasPassed);
         //return newList;
+    }
+    // Для тестирования
+    public int getSize(){
+        return counter;
+    }
+    public long getTimeHasPassed(){
+        return timeHasPassed;
+    }
+    public List<Airport> getAirports(String name){
+        List<Airport> newList = new ArrayList<>();
+        for (Airport airport : airports) {
+            if (name.equals("")) {
+                System.out.println("No text value");
+                break;
+            }
+            if (airport.getAirportName().toUpperCase().startsWith(name.toUpperCase())) {
+                newList.add(airport);
+                System.out.println(airport.getAirportName() + "[" + airport + "]");
+
+            }
+        }
+        System.out.println("founded values: " + counter);
+        return newList;
     }
 }
