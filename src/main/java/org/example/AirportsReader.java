@@ -11,7 +11,7 @@ import java.util.Map;
 public class AirportsReader {
     private int counter;
     private long timeHasPassed;
-    private List<Airport> airports = new ArrayList<>();
+    private final List<Airport> airports = new ArrayList<>();
     public void readAirport(){
         try (BufferedReader br = new BufferedReader(new FileReader(Config.AIRPORTS))) {
             String line;
