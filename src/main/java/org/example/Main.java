@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +14,9 @@ public class Main {
                 scanner.close();
                 break;
             }
-            reader.findAirportsByName(search);
+            if(args[0].equals("2")){
+                reader.findAirportsByName(search);
+            }
         }
     }
 }
