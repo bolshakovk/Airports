@@ -41,7 +41,7 @@
 
 > - [x] Ошибочные и краевые ситуации должны быть корректно обработаны.
 
-Реализованы юнит-тесты [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx)
+Реализованы юнит-тесты [юнит-тесты](https://github.com/bolshakovk/Airports/blob/master/src/test/java/org/example/AirportsReaderTest.java)
 
 > - [x] Использовать готовые библиотеки для парсинга CSV формата нельзя.
 
