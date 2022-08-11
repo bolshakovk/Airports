@@ -22,13 +22,15 @@
 При сборке, создал название артефакта Airport, с версией 2.0. Создан джарник mvn clean package c требуемым флагом
 Запускал и работал через Intellij Idea, собрал проект командой maven clean install, перешел в каталог target, добавил .csv файл, 
 ввел java -jar Airport-1.0.jar 2(параметр) и нужную строку для поиска.
-![image](https://user-images.githubusercontent.com/71641509/184043133-e73c0a04-d8b7-4b96-8f68-311c62a07dc4.png)
+![image](https://user-images.githubusercontent.com/71641509/184049636-77857a6b-eaf6-4c5f-a144-b57229906416.png)
 
 
 > - [x] Скорость поиска должна быть максимально высокой с учетом требований выше  
 (в качестве ориентира можно взять число из скриншота выше: на поиск по «Bo», который
 выдает 68 строк, требуется 25 мс).
-![image](https://user-images.githubusercontent.com/71641509/183874270-8c349414-8879-4d7a-a941-483ff984dfe6.png)
+
+![image](https://user-images.githubusercontent.com/71641509/184049695-fe27a0c1-dac8-402a-b292-d21b8512a02d.png)
+
 
 
 Скорость работы замерена и протестирована на примере
