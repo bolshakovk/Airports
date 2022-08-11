@@ -1,22 +1,21 @@
 package org.example;
 
-import java.util.Objects;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
-        AirportsReader reader = new AirportsReader();
-        reader.readAirport();
+    public static void main(String[] args) throws IOException {
+        Readable readable = new AirportReaderByMap();
         Scanner scanner = new Scanner(System.in);
+        readable.readFile();
         while (scanner.hasNextLine()){
-            String search = scanner.nextLine();
+            String search = scanner.nextLine().replace('"', ' ').trim();
+            System.out.println(search);
             if (search.equals("!quit")){
                 scanner.close();
                 break;
             }
-            if(args[0].equals("2")){
-                reader.findAirportsByName(search);
-            }
+            readable.findValue(search);
         }
     }
 }
