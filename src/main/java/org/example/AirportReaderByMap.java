@@ -27,9 +27,9 @@ public class AirportReaderByMap implements Readable {
             if (isFound(smallMap1, name)){
                 printMap(smallMap1, name);
             }
+            timeHasPassed = System.currentTimeMillis() - time;
+            System.out.println("searching time: " + timeHasPassed);
         }
-        timeHasPassed = System.currentTimeMillis() - time;
-        System.out.println("searching time: " + timeHasPassed);
     }
 
     @Override
@@ -52,6 +52,7 @@ public class AirportReaderByMap implements Readable {
         return false;
     }
     private void printMap(TreeMap<String, String> map, String name){
+        matches = 0;
         for (Map.Entry<String, String> m : map.entrySet()){
             if (m.getKey().equals("")){
             }else if (m.getKey().replace('"', ' ').trim().toUpperCase().startsWith(name.toUpperCase())){
