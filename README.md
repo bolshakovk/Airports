@@ -20,8 +20,7 @@
 (все запуски java –jar должны выполняться с флагом ).
 
 При сборке, создал название артефакта Airport, с версией 2.0. Создан джарник mvn clean package c требуемым флагом
-![image](https://user-images.githubusercontent.com/71641509/183873506-4d2aa1d4-6e3a-434d-a85e-c462d8e57189.png)
- Запускал и работал через Intellij Idea, собрал проект командой maven clean install, перешел в каталог target, добавил .csv файл, 
+Запускал и работал через Intellij Idea, собрал проект командой maven clean install, перешел в каталог target, добавил .csv файл, 
 ввел java -jar Airport-1.0.jar 2(параметр) и нужную строку для поиска.
 ![image](https://user-images.githubusercontent.com/71641509/184043133-e73c0a04-d8b7-4b96-8f68-311c62a07dc4.png)
 
