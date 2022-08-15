@@ -23,11 +23,17 @@ public class AirportReaderByMap implements Readable {
             //буду хранить НЕ ВЕСЬ ФАЙЛ, а пары ключ значения, где ключ это номер строки, а значение меняется в зависимости от аргумента командной строки
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
+                switch (getArg()){
+                    case "2":
+                        smallMap1.put(lineIndex, values[1]);
+                    case "1":
+                        smallMap1.put(lineIndex, values[0]);
+                }/*
                 if (getArg().equals("2")) {
                     smallMap1.put(lineIndex, values[1]);
                 }else if (getArg().equals("1")){
                     smallMap1.put(lineIndex, values[0]);
-                }
+                }*/
                 lineIndex++;
             }
         } catch (IOException e) {
@@ -58,6 +64,9 @@ public class AirportReaderByMap implements Readable {
         return timeHasPassed;
     }
     public String getArg() {
+        if (arg == null){
+            arg = "1";
+        }
         return arg;
     }
     private int compareStrings(String s1){return s1.compareTo(Config.middle);}
