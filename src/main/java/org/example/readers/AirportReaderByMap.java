@@ -11,29 +11,28 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class AirportReaderByMap implements Readable {
-    private static int matches = 0;
+    private static int matches;
     private final TreeMap<Integer,String> smallMap1 = new TreeMap<>();
     private long timeHasPassed;
-    private String arg;
+    private static String arg;
     private int lineIndex = 0;
 
+    public int getMatches(){
+        return matches;
+    }
     public void readFile(){
         try(BufferedReader br = new BufferedReader(new FileReader(Config.AIRPORTS))) {
             String line;
             //буду хранить НЕ ВЕСЬ ФАЙЛ, а пары ключ значения, где ключ это номер строки, а значение меняется в зависимости от аргумента командной строки
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                switch (getArg()){
-                    case "2":
-                        smallMap1.put(lineIndex, values[1]);
-                    case "1":
-                        smallMap1.put(lineIndex, values[0]);
-                }/*
                 if (getArg().equals("2")) {
                     smallMap1.put(lineIndex, values[1]);
-                }else if (getArg().equals("1")){
+                } else{
                     smallMap1.put(lineIndex, values[0]);
-                }*/
+                }
+
+
                 lineIndex++;
             }
         } catch (IOException e) {
@@ -42,19 +41,26 @@ public class AirportReaderByMap implements Readable {
     }
     @Override
     public void findValue(String name) throws IOException {
-        long time = System.currentTimeMillis();
+        long sTime = System.currentTimeMillis();
+        matches = 0;
         if (compareStrings(name) < 0) {
             if(isFound(smallMap1, name)) {
-                timeHasPassed = System.currentTimeMillis() - time;
+                timeHasPassed = System.currentTimeMillis();
                 printMap(smallMap1, name);
+                System.out.println("searching time: " + (timeHasPassed - sTime));
+            }else {
+                System.out.println("matchers: " + getMatches());
+                if ((timeHasPassed - sTime) < 0){
+                    int t = (int)(timeHasPassed - sTime)/1000000000;
+                    System.out.println("searching time: " + t);
+                }
             }
-            System.out.println("searching time: " + timeHasPassed);
         }
     }
 
     @Override
     public void setArg(String arg) {
-        this.arg = arg;
+        AirportReaderByMap.arg = arg;
     }
 
     public int getSize() {
@@ -65,7 +71,7 @@ public class AirportReaderByMap implements Readable {
     }
     public String getArg() {
         if (arg == null){
-            arg = "1";
+            setArg("1");
         }
         return arg;
     }
@@ -74,6 +80,7 @@ public class AirportReaderByMap implements Readable {
         if (!name.equals("")){
             for (Map.Entry<Integer, String> m : map.entrySet()){
                 if (m.getValue().replace('"', ' ').trim().toUpperCase().startsWith(name.toUpperCase())){
+                    timeHasPassed = System.currentTimeMillis();
                     return true;
                 }
             }

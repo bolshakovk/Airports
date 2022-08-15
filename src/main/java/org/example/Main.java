@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void scanningLines(Readable readable, Scanner scanner) throws IOException {
+        readable.readFile();
         while (scanner.hasNextLine()){
             String search = scanner.nextLine().replace('"', ' ').trim();
             if (search.equals("!quit")){
@@ -20,15 +21,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Readable readable = new AirportReaderByMap();
         Scanner scanner = new Scanner(System.in);
-        readable.readFile();
         if (args.length == 0){
-            readable.setArg("1");
+            System.out.println("no args passed, seeking with arg 1");
             scanningLines(readable,scanner);
-            System.out.println("no args passed, find by digit default");
         }
         else if (args[0].equals("2")){
+            readable.setArg(args[0]);
             scanningLines(readable,scanner);
         } else if (args[0].equals("1")) {
+            readable.setArg(args[0]);
             scanningLines(readable,scanner);
         }
     }
